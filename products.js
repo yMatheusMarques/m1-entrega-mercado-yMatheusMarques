@@ -88,3 +88,87 @@ const products = [
     imageDescription: "",
   },
 ];
+
+function criarProduto(produto){
+   let nome = produto.title
+   let preco = produto.price
+   let categoria = produto.category
+   let imagem = produto.image
+   
+   //Elementos
+   
+   let main = document.createElement('main')
+   let card = document.createElement('li')
+   let img = document.createElement('img')
+   let title = document.createElement('h1')
+   let category = document.createElement('h5')
+   let productPrice = document.createElement('strong')
+   let ul = document.createElement('ul')
+   let frutas = document.getElementById('frutas')
+   let bebidas = document.getElementById('bebidas')
+   let higiene = document.getElementById('higiene')
+   
+   // Inserindo as informações
+
+   if(imagem == undefined){
+    img.src = './img/products/no-img.svg'
+   
+  }else{
+    img.src = `${imagem}`
+  }
+  
+  img.alt = nome
+  title.innerHTML = `${nome}`
+  category.innerHTML = `${categoria}`
+  productPrice.innerHTML = `${preco}`
+
+  if(produto.category == 'Frutas'){
+      
+      frutas.appendChild(ul)
+      ul.appendChild(card)
+      card.appendChild(img)
+      card.appendChild(main)
+      main.appendChild(title)
+      main.appendChild(category)
+      main.appendChild(productPrice)
+  
+    }else if(produto.category == 'Bebidas'){
+     
+      bebidas.appendChild(ul)
+      ul.appendChild(card)
+      card.appendChild(img)
+      card.appendChild(main)
+      main.appendChild(title)
+      main.appendChild(category)
+      main.appendChild(productPrice)
+  
+    }else if(produto.category == 'Higiene'){
+
+      higiene.appendChild(ul)
+      ul.appendChild(card)
+      card.appendChild(img)
+      card.appendChild(main)
+      main.appendChild(title)
+      main.appendChild(category)
+      main.appendChild(productPrice)
+    }
+   
+    card.classList.add('product')
+    img.classList.add('product-img')
+    main.classList.add('product-main')
+    title.classList.add('product-title')
+    category.classList.add('product-category')
+    productPrice.classList.add('product-price')
+
+    return card
+}
+
+function listarProdutos(listaProdutos){
+  for(let i = 0; i < listaProdutos.length; i++){
+
+    let produto = listaProdutos[i]
+    let cardProduto = criarProduto(produto)
+  }
+}
+
+listarProdutos(products)
